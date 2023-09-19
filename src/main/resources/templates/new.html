@@ -6,10 +6,10 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/storage}" th:object="${storage}">
+<form th:method="POST" th:action="@{/storages}" th:object="${storage}">
     <label for="name">Enter id: </label>
     <input type="text" th:field="*{id}" id="id"/>
-    <br/>x
+    <br/>
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <br/>

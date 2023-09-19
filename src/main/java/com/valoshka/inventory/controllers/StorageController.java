@@ -12,27 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/storage")
+@RequestMapping("/storages")
 public class StorageController {
 
     private final StorageService storageService;
 
     @GetMapping
-    public String get(Model model){
+    public String index(Model model){
         model.addAttribute("storages", storageService.getAll());
         return "k";
     }
 
     @GetMapping("/new")
-    public String fr(Model model){
+    public String createNew(Model model){
         model.addAttribute("storage", new Storage());
         return "new";
     }
 
     @PostMapping
     public String h(@ModelAttribute Storage storage) {
-        storageService.saveStorage(storage);
-        return "redirect:/storage";
+        storageService.save(storage);
+        return "redirect:/storages";
     }
 
 
