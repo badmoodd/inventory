@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New storage</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/storage}" th:object="${storage}">
+    <label for="name">Enter id: </label>
+    <input type="text" th:field="*{id}" id="id"/>
+    <br/>x
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="name">Enter phone: </label>
+    <input type="text" th:field="*{phoneNumber}" id="phone"/>
+    <br/>
+
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

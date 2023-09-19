@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.List;
+
 @Entity
 @Table(name = "equipment")
 @Data
@@ -20,5 +22,13 @@ public class Equipment {
     @NonNull
     @Column(name = "name")
     EquipmentType name;
+
+    @ManyToMany
+    @JoinTable(
+            name = "equipment_card",
+            joinColumns = @JoinColumn(name = "equip_id"),
+            inverseJoinColumns = @JoinColumn(name = "waybill_id")
+    )
+    List<Waybill> waybillList;
 
 }

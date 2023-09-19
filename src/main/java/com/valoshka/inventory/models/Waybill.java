@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "waybill")
@@ -17,27 +17,35 @@ public class Waybill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
 
     @NonNull
     @Column(name = "name")
-    WaybillType name;
+    private WaybillType name;
 
     @NonNull
     @Column(name = "employee_name")
-    String employeeName;
+    private String employeeName;
 
     @NonNull
     @Column(name = "employee_position")
-    String employeePosition;
+    private String employeePosition;
 
     @NonNull
     @Column(name = "date")
-    LocalDateTime dateTime;
+    private LocalDateTime dateTime;
 
-    int storageId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "storage_id")
+    private Storage storage;
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "equipment_card",
+            joinColumns = @JoinColumn(name = "waybill_id"),
+            inverseJoinColumns = @JoinColumn(name = "equip_id")
+    )
+    private List<Equipment> equipmentList;
 
 
 }

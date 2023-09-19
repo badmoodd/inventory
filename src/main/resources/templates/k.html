@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Index</title>
 </head>
 <body>
-egor
+
+<div th:each="aStorage : ${storages}">
+    <a th:href="@{/storages/{id}(id=${aStorage.getId()})}"
+       th:text="${aStorage.getName() + ', ' + aStorage.getPhoneNumber()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/people/new">Create new person</a>
+
 </body>
 </html>

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "equipment_card")
 @Data
@@ -17,7 +19,4 @@ public class EquipmentCard {
     @Column(name = "equip_count")
     int equipCount;
 
-    int equipId;
-
-    int waybillId;
 }
