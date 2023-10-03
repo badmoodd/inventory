@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,5 +31,12 @@ public class Equipment {
             inverseJoinColumns = @JoinColumn(name = "waybill_id")
     )
     List<Waybill> waybillList;
+
+    public void addWaybillToEquipment(Waybill waybill) {
+        if (waybillList == null) {
+            waybillList = new ArrayList<>();
+        }
+        waybillList.add(waybill);
+    }
 
 }

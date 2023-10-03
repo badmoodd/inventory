@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Waybill {
     private int id;
 
     @NonNull
-    @Column(name = "name")
+    @Enumerated(EnumType.STRING)
     private WaybillType name;
 
     @NonNull
@@ -46,6 +47,15 @@ public class Waybill {
             inverseJoinColumns = @JoinColumn(name = "equip_id")
     )
     private List<Equipment> equipmentList;
+
+    public void addEquipmentToWaybill(Equipment equipment) {
+        if (equipmentList == null) {
+            equipmentList = new ArrayList<>();
+        }
+        equipmentList.add(equipment);
+    }
+
+
 
 
 }
