@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,25 +17,22 @@ public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
 
     @NonNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "name")
-    EquipmentType name;
+    private EquipmentType name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "equipment_card",
-            joinColumns = @JoinColumn(name = "equip_id"),
-            inverseJoinColumns = @JoinColumn(name = "waybill_id")
-    )
-    List<Waybill> waybillList;
+    @OneToMany(mappedBy = "equipment")
+    private List<EquipmentCard> equipmentCardList;
 
-    public void addWaybillToEquipment(Waybill waybill) {
-        if (waybillList == null) {
-            waybillList = new ArrayList<>();
-        }
-        waybillList.add(waybill);
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", name=" + name +
+                ", equipmentCardListSize=" + equipmentCardList.size() +
+                '}';
     }
-
 }

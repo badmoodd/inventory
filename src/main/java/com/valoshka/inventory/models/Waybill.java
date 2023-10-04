@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +21,7 @@ public class Waybill {
 
     @NonNull
     @Enumerated(EnumType.STRING)
+    @Column(name = "name")
     private WaybillType name;
 
     @NonNull
@@ -40,22 +40,18 @@ public class Waybill {
     @JoinColumn(name = "storage_id")
     private Storage storage;
 
-    @ManyToMany
-    @JoinTable(
-            name = "equipment_card",
-            joinColumns = @JoinColumn(name = "waybill_id"),
-            inverseJoinColumns = @JoinColumn(name = "equip_id")
-    )
-    private List<Equipment> equipmentList;
-
-    public void addEquipmentToWaybill(Equipment equipment) {
-        if (equipmentList == null) {
-            equipmentList = new ArrayList<>();
-        }
-        equipmentList.add(equipment);
+    @OneToMany(mappedBy = "waybill")
+    List<EquipmentCard> equipmentCardList;
+    @Override
+    public String toString() {
+        return "Waybill{" +
+                "id=" + id +
+                ", name=" + name +
+                ", employeeName='" + employeeName + '\'' +
+                ", employeePosition='" + employeePosition + '\'' +
+                ", dateTime=" + dateTime +
+                ", storage=" + storage.getId() +
+                ", equipmentCardSize=" + equipmentCardList.size() +
+                '}';
     }
-
-
-
-
 }

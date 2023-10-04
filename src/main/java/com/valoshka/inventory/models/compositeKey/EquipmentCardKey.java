@@ -2,18 +2,16 @@ package com.valoshka.inventory.models.compositeKey;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/*
 @Embeddable
 @NoArgsConstructor
-@Table(name = "equipment_card")
+@AllArgsConstructor
 @Data
 public class EquipmentCardKey implements Serializable {
 
@@ -24,4 +22,3 @@ public class EquipmentCardKey implements Serializable {
     private int waybillId;
 
 }
-*/

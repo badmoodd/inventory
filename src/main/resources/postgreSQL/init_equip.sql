@@ -29,8 +29,8 @@ CREATE TABLE waybill
 
 CREATE TABLE equipment_card
 (
-    id          SERIAL PRIMARY KEY,
     equip_count INT,
     equip_id    INT REFERENCES equipment (id),
-    waybill_id  INT REFERENCES waybill (id)
+    waybill_id  INT REFERENCES waybill (id),
+    PRIMARY KEY(equip_id, waybill_id)
 );

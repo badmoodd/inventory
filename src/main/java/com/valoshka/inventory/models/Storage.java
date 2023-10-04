@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,13 +28,13 @@ public class Storage {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "storage")
     private List<Waybill> waybillList;
 
-    public void addWaybillToStorage(Waybill waybill) {
-        if (waybillList == null) {
-            waybillList = new ArrayList<>();
-        }
-        waybillList.add(waybill);
-        waybill.setStorage(this);
+    @Override
+    public String toString() {
+        return "Storage{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", waybillListSize='" + waybillList.size() +
+                '}';
     }
-
-
 }
