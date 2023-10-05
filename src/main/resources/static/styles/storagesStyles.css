@@ -1,0 +1,5 @@
+.button-container {
+    display: flex;
+    justify-content: left; /* Равномерно распределяем кнопки по контейнеру */
+    margin-right: 20px; /* Устанавливаем боковой отступ между кнопками */
+}

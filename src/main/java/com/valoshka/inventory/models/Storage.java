@@ -33,8 +33,7 @@ public class Storage {
         return "Storage{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", waybillListSize='" + waybillList.size() +
+                ", phoneNumber='" + phoneNumber +
                 '}';
     }
 }
