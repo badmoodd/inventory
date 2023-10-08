@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/storagesStyles.css">
-    <title>Storages</title>
+    <title>Waybills</title>
 </head>
 <body>
 
@@ -22,24 +22,30 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone Number</th>
+                <th scope="col">Date</th>
+                <th scope="col">Waybill Type</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Storage Number</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="aStorage : ${storages}">
-                <th scope="row" th:text="${aStorage.getId()}"></th>
-                <td th:text="${aStorage.getName()}"></td>
-                <td th:text="${aStorage.getPhoneNumber()}"></td>
+            <tr th:each="aWaybill : ${waybills}">
+                <th scope="row" th:text="${aWaybill.getId()}"></th>
+                <td th:text="${aWaybill.getDateTime()}"></td>
+                <td th:text="${aWaybill.getName()}"></td>
+                <td th:text="${aWaybill.getEmployeeName()}"></td>
+                <td th:text="${aWaybill.getEmployeePosition()}"></td>
+                <td th:text="${aWaybill.getStorage().getId()}"></td>
+
                 <td>
                     <div class="button-container">
-                        <a th:href="@{'/storages/' + ${aStorage.getId()} + '/edit'}" class="btn btn-primary btn-sm">Change</a>
-                        <form action="#" th:method="DELETE" th:action="@{/storages/{id}(id=${aStorage.getId()})}">
+                        <a th:href="@{'/waybills/' + ${aWaybill.getId()} + '/edit'}" class="btn btn-primary btn-sm">Change</a>
+                        <form action="#" th:method="DELETE" th:action="@{/waybills/{id}(id=${aWaybill.getId()})}">
                             <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
                         </form>
                     </div>
-
                 </td>
             </tr>
             </tbody>

@@ -1,5 +1,11 @@
 .button-container {
     display: flex;
     justify-content: left; /* Равномерно распределяем кнопки по контейнеру */
-    margin-right: 20px; /* Устанавливаем боковой отступ между кнопками */
+}
+.btn-primary {
+    margin-right: 10px; /* Устанавливает правый отступ между кнопками */
+}
+
+.bi-exclamation-triangle-fill {
+    margin-right: 5px;
 }

@@ -50,7 +50,6 @@ public class StorageController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("storage") Storage storage, @PathVariable("id") int id) {
         storageService.update(id, storage);
-        System.out.println(storage);
         return "redirect:/storages";
     }
 

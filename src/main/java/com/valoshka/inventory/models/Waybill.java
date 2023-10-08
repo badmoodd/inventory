@@ -19,20 +19,15 @@ public class Waybill {
     @Column(name = "id")
     private int id;
 
-    @NonNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "name")
     private WaybillType name;
 
-    @NonNull
     @Column(name = "employee_name")
     private String employeeName;
 
-    @NonNull
     @Column(name = "employee_position")
     private String employeePosition;
 
-    @NonNull
     @Column(name = "date")
     private LocalDateTime dateTime;
 
@@ -42,6 +37,14 @@ public class Waybill {
 
     @OneToMany(mappedBy = "waybill")
     List<EquipmentCard> equipmentCardList;
+
+    public Waybill(@NonNull WaybillType name, @NonNull String employeeName, @NonNull String employeePosition) {
+        this.name = name;
+        this.employeeName = employeeName;
+        this.employeePosition = employeePosition;
+        this.dateTime = LocalDateTime.now();
+    }
+
     @Override
     public String toString() {
         return "Waybill{" +
@@ -51,7 +54,6 @@ public class Waybill {
                 ", employeePosition='" + employeePosition + '\'' +
                 ", dateTime=" + dateTime +
                 ", storage=" + storage.getId() +
-                ", equipmentCardSize=" + equipmentCardList.size() +
                 '}';
     }
 }
