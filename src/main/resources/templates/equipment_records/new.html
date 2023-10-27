@@ -9,26 +9,36 @@
 <body>
 
 <div class="container">
-    <h1>Create a New Waybill</h1>
-    <form th:method="POST" th:action="@{/waybills}" th:object="${waybill}" class="form">
-        <select class="form-select form-select-lg mb-3" aria-label="Large select example" th:field="*{name}">
-            <option value="" selected>Waybill Type</option>
-            <option value="DELIVERY">Delivery</option>
-            <option value="EXPENSE">Expense</option>
-        </select>
+    <h3>Create a New Equipment Info</h3>
+    <form th:method="POST" th:action="@{/equipment}" th:object="${equipment_card}" class="form">
         <div class="form-group">
             <label for="employee-name">Employee Name:</label>
-            <input type="text" th:field="*{employeeName}" class="form-control" id="employee-name"
+            <input type="text" th:field="*{waybill.employeeName}" class="form-control" id="employee-name"
                    placeholder="Employee Name">
         </div>
         <div class="form-group">
             <label for="employee-position">Employee Position:</label>
-            <input type="text" th:field="*{employeePosition}" class="form-control" id="employee-position"
+            <input type="text" th:field="*{waybill.employeePosition}" class="form-control" id="employee-position"
                    placeholder="Employee Name">
+        </div>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" th:field="*{waybill.name}">
+            <option value="" selected>Waybill Type</option>
+            <option value="DELIVERY">Delivery</option>
+            <option value="EXPENSE">Expense</option>
+        </select>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" th:field="*{equipment.name}">
+            <option value="" selected>Equipment Type</option>
+            <option value="WORKWEAR">Work wear</option>
+            <option value="INSTRUMENTS">Instruments</option>
+            <option value="EQUIPMENT">Equipment</option>
+        </select>
+        <div class="form-group">
+            <label for="count">Count:</label>
+            <input type="text" th:field="*{equipCount}" class="form-control" id="count" placeholder="Equipment Count">
         </div>
         <div class="form-group">
             <label for="storage-id">Storage ID:</label>
-            <input type="text" th:field="*{storage.id}" class="form-control" id="storage-id" placeholder="Storage ID">
+            <input type="text" th:field="*{waybill.storage.id}" class="form-control" id="storage-id" placeholder="Storage ID">
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>

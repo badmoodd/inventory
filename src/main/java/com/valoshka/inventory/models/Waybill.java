@@ -31,7 +31,7 @@ public class Waybill {
     @Column(name = "date")
     private LocalDateTime dateTime;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "storage_id")
     private Storage storage;
 

@@ -22,8 +22,8 @@ public class EquipmentCardService {
         return equipmentCardRepository.findAll();
     }
 
-    public Optional<EquipmentCard> getByCompositeKey(int equipmentId, int waybillId) {
-        return equipmentCardRepository.findById(new EquipmentCardKey(equipmentId, waybillId));
+    public Optional<EquipmentCard> getByCompositeKey(EquipmentCardKey compositeKey) {
+        return equipmentCardRepository.findById(compositeKey);
     }
 
     @Transactional
@@ -32,13 +32,13 @@ public class EquipmentCardService {
     }
 
     @Transactional
-    public void update(int equipmentId, int waybillId, @NonNull EquipmentCard updatedEquipmentCard) {
-        updatedEquipmentCard.setId(new EquipmentCardKey(equipmentId, waybillId));
+    public void update(EquipmentCardKey compositeKey, @NonNull EquipmentCard updatedEquipmentCard) {
+        updatedEquipmentCard.setId(compositeKey);
         equipmentCardRepository.save(updatedEquipmentCard);
     }
 
     @Transactional
-    public void delete(int equipmentId, int waybillId) {
-        equipmentCardRepository.deleteById(new EquipmentCardKey(equipmentId, waybillId));
+    public void delete(EquipmentCardKey compositeKey) {
+        equipmentCardRepository.deleteById(compositeKey);
     }
 }

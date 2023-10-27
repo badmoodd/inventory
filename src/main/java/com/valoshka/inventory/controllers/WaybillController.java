@@ -34,7 +34,6 @@ public class WaybillController {
     }
 
     @PostMapping
-
     public String create(@ModelAttribute Waybill waybill) {
         try {
             var storageToSet = storageService.getById(waybill.getStorage().getId()).orElseThrow();
@@ -73,6 +72,8 @@ public class WaybillController {
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
+        Waybill waybill = waybillService.getById(id).orElseThrow();
+        System.out.println(waybill.getEquipmentCardList());
         waybillService.delete(id);
         return "redirect:/waybills";
     }
