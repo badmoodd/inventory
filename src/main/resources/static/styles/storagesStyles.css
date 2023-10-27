@@ -1,3 +1,8 @@
+.page-name {
+    text-align: center; /* Горизонтальное выравнивание по центру */
+    display: flex;
+    flex-direction: column;
+}
 .button-container {
     display: flex;
     justify-content: left; /* Равномерно распределяем кнопки по контейнеру */
