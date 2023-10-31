@@ -38,7 +38,10 @@ public class Waybill {
     @OneToMany(mappedBy = "waybill")
     List<EquipmentCard> equipmentCardList;
 
-    public Waybill(@NonNull WaybillType name, @NonNull String employeeName, @NonNull String employeePosition) {
+    public Waybill(@NonNull WaybillType name,
+                   @NonNull String employeeName,
+                   @NonNull String employeePosition) {
+
         this.name = name;
         this.employeeName = employeeName;
         this.employeePosition = employeePosition;

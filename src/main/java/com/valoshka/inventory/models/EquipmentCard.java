@@ -25,12 +25,15 @@ public class EquipmentCard {
     @JoinColumn(name = "equip_id")
     private Equipment equipment;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("waybillId")
     @JoinColumn(name = "waybill_id")
     private Waybill waybill;
 
-    public EquipmentCard(int equipCount, @NonNull Equipment equipment, @NonNull Waybill waybill) {
+    public EquipmentCard(int equipCount,
+                         @NonNull Equipment equipment,
+                         @NonNull Waybill waybill) {
+
         this.id = new EquipmentCardKey(equipment.getId(), waybill.getId());
         this.equipCount = equipCount;
         this.equipment = equipment;
