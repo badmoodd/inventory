@@ -1,6 +1,5 @@
 package com.valoshka.inventory.models;
 
-import com.valoshka.inventory.models.enums.EquipmentType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,9 +19,8 @@ public class Equipment {
     private int id;
 
     @NonNull
-    @Enumerated(EnumType.STRING)
     @Column(name = "name")
-    private EquipmentType name;
+    private String name;
 
     @OneToMany(mappedBy = "equipment")
     private List<EquipmentCard> equipmentCardList;

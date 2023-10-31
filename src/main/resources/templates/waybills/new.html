@@ -11,8 +11,8 @@
 <div class="container">
     <h1>Create a New Waybill</h1>
     <form th:method="POST" th:action="@{/waybills}" th:object="${waybill}" class="form">
-        <select class="form-select form-select-lg mb-3" aria-label="Large select example" th:field="*{name}">
-            <option value="" selected>Waybill Type</option>
+        <select class="form-select form-select-lg mb-3" style="font-size: 16px" aria-label="Large select example" th:field="*{name}">
+            <option value="" disabled selected>Waybill Type</option>
             <option value="DELIVERY">Delivery</option>
             <option value="EXPENSE">Expense</option>
         </select>

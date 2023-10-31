@@ -28,8 +28,9 @@
                 <th scope="col">Employee Name</th>
                 <th scope="col">Position</th>
                 <th scope="col">Storage Number</th>
-                <th scope="col">Action
-                    <a th:href="@{'/equipment/new'}" class="btn btn-primary btn-sm float-end mt-2">
+                <th scope="col" class="d-flex flex-row justify-content-between">
+                    <span class=" mt-auto">Action</span>
+                    <a th:href="@{'/equipment/new'}" class="d-flex btn btn-primary btn-sm float-end mt-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-plus" viewBox="0 0 16 16">
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
