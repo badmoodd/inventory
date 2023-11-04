@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit storage</title>
+    <title>New storage</title>
     <!-- Подключите стили Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -10,17 +10,13 @@
 <body>
 
 <div class="container">
-    <h2 style="color: rgb(80, 78, 105);" class=" text-center"> Edit Storage</h2>
-    <form th:method="PATCH" th:action="@{/storages/{id}(id=${storage.getId()})}" th:object="${storage}" class="d-flex flex-column gap-3 container w-50 form mt-5">
+    <h2 style="color: rgb(80, 78, 105);" class=" text-center"> Create a new Equipment</h2>
+    <form th:method="POST" th:action="@{/equipment}" th:object="${equipment}" class="d-flex flex-column gap-3 container w-50 form mt-5">
         <div class="form-group">
             <label for="name">Enter Name</label>
             <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter Name">
         </div>
-        <div class="form-group">
-            <label for="phone">Enter Phone</label>
-            <input type="text" th:field="*{phoneNumber}" class="form-control" id="phone" placeholder="Enter Phone">
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
 

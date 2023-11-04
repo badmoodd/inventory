@@ -10,18 +10,18 @@
 <body>
 
 <div class="container">
-    <h2 style="color: rgb(80, 78, 105);"> Create a New Storage</h2>
-    <form th:method="POST" th:action="@{/storages}" th:object="${storage}" class="form">
+    <h2 style="color: rgb(80, 78, 105);" class=" text-center"> Create a new Storage</h2>
+    <form th:method="POST" th:action="@{/storages}" th:object="${storage}" class="d-flex flex-column gap-3 container w-50 form mt-5">
         <div class="form-group">
-            <label for="id">Enter ID:</label>
+            <label for="id">Enter ID</label>
             <input type="text" th:field="*{id}" class="form-control" id="id" placeholder="Enter ID">
         </div>
         <div class="form-group">
-            <label for="name">Enter Name:</label>
+            <label for="name">Enter Name</label>
             <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter Name">
         </div>
         <div class="form-group">
-            <label for="phone">Enter Phone:</label>
+            <label for="phone">Enter Phone</label>
             <input type="text" th:field="*{phoneNumber}" class="form-control" id="phone" placeholder="Enter Phone">
         </div>
 

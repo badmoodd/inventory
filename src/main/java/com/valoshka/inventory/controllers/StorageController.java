@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -55,7 +54,6 @@ public class StorageController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         storageService.delete(id);
-
         return "redirect:/storages";
     }
 

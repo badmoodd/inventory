@@ -2,45 +2,53 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New storage</title>
+    <title>New waybill record</title>
     <!-- Стили Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 
 <div class="container">
 
-    <h2 style="color: rgb(80, 78, 105);" class=" text-center"> Create a New Equipment Info</h2>
-    <form th:method="POST" th:action="@{/records}" th:object="${equipment_card}" class="d-flex flex-column gap-3 container w-50 form mt-5">
+    <h2 style="color: rgb(80, 78, 105);" class=" text-center"> Create a new Waybill record</h2>
+    <form th:method="POST" th:action="@{/records}" th:object="${equipment_card}"
+          class="d-flex flex-column gap-3 container w-50 form mt-5">
         <div class="form-group">
-            <label for="employee-name">Employee Name:</label>
+            <label for="employee-name">Employee Name</label>
             <input type="text" th:field="*{waybill.employeeName}" class="form-control" id="employee-name"
                    placeholder="Employee Name">
         </div>
         <div class="form-group">
-            <label for="employee-position">Employee Position:</label>
+            <label for="employee-position">Employee Position</label>
             <input type="text" th:field="*{waybill.employeePosition}" class="form-control" id="employee-position"
                    placeholder="Employee Name">
         </div>
 
-        <select class="form-select form-select-sm mt-3" style="height: 38px" aria-label=".form-select-sm example" th:field="*{waybill.name}">
-            <option value="" selected>Waybill Type</option>
-            <option value="DELIVERY">Delivery</option>
-            <option value="EXPENSE">Expense</option>
-        </select>
-
         <div class="form-group">
-            <label for="equip-name">Equipment Name:</label>
-            <input type="text" th:field="*{equipment.name}" class="form-control" id="equip-name" placeholder="Equipment Name">
+            <label for="type-select">Waybill type</label>
+            <select id="type-select" class="form-select form-select-sm" style="height: 38px; font-size: 16px; font-weight: bold" aria-label=".form-select-sm example"
+                    th:field="*{waybill.name}">
+                <option value="" disabled selected>Type</option>
+                <option value="DELIVERY">Delivery</option>
+                <option value="EXPENSE">Expense</option>
+            </select>
         </div>
 
         <div class="form-group">
-            <label for="count">Count:</label>
+            <label for="equip-name">Equipment Name</label>
+            <input type="text" th:field="*{equipment.name}" class="form-control" id="equip-name"
+                   placeholder="Equipment Name">
+        </div>
+
+        <div class="form-group">
+            <label for="count">Count</label>
             <input type="text" th:field="*{equipCount}" class="form-control" id="count" placeholder="Equipment Count">
         </div>
         <div class="form-group">
-            <label for="storage-id">Storage ID:</label>
-            <input type="text" th:field="*{waybill.storage.id}" class="form-control" id="storage-id" placeholder="Storage ID">
+            <label for="storage-id">Storage ID</label>
+            <input type="text" th:field="*{waybill.storage.id}" class="form-control" id="storage-id"
+                   placeholder="Storage ID">
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>

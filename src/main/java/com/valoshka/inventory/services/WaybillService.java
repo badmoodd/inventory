@@ -1,17 +1,13 @@
 package com.valoshka.inventory.services;
 
-import com.valoshka.inventory.models.EquipmentCard;
 import com.valoshka.inventory.models.Waybill;
-import com.valoshka.inventory.models.compositeKey.EquipmentCardKey;
 import com.valoshka.inventory.repositories.WaybillRepository;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -43,25 +39,11 @@ public class WaybillService {
 
     @Transactional
     public void delete(int id) {
+        Optional<Waybill> waybillOpt = waybillRepository.findById(id);
 
-
-        try {
-            System.out.println("idfjakscdaklmc");
-            Waybill waybillToDelete = waybillRepository.findById(id).orElseThrow();
-//            waybillToDelete.getEquipmentCardList().clear();
-            waybillRepository.delete(waybillToDelete);
-            /*var linkedCards = waybillToDelete.getEquipmentCardList();
-
-            if (!linkedCards.isEmpty()) {
-                for (EquipmentCard cardToDelete : linkedCards) {
-                    equipmentCardService.delete(cardToDelete.getId());
-                }
-            }
-
-
-            waybillRepository.deleteById(id);*/
-
-        } catch (NoSuchElementException ex) {
+        if (waybillOpt.isPresent()) {
+            waybillRepository.deleteById(id);
+        } else {
             log.info("Attempt to delete no exist waybill");
         }
     }
