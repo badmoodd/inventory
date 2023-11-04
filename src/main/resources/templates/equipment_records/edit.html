@@ -13,7 +13,7 @@
 <div class="container">
     <h3></h3>
     <h2 style="color: rgb(80, 78, 105);">Edit Equipment Info</h2>
-    <form th:method="PATCH" th:action="@{/equipment}" class="form">
+    <form th:method="PATCH" th:action="@{/records}" class="form">
         <input type="hidden" name="equipmentId" th:value="${card_to_edit.getEquipment().getId()}"/>
         <input type="hidden" name="waybillId" th:value="${card_to_edit.getWaybill().getId()}"/>
 
@@ -33,12 +33,6 @@
             <option value="DELIVERY">Delivery</option>
             <option value="EXPENSE">Expense</option>
         </select>
-        <!--<select class="form-select form-select-sm" aria-label=".form-select-sm example" th:field="*{card_to_edit.equipment.name}">
-            <option value="" selected>Equipment Type</option>
-            <option value="WORKWEAR">Work wear</option>
-            <option value="INSTRUMENTS">Instruments</option>
-            <option value="EQUIPMENT">Equipment</option>
-        </select>-->
         <div class="form-group">
             <label for="equip-name">Equipment Name:</label>
             <input type="text" th:field="*{card_to_edit.equipment.name}" class="form-control" id="equip-name" placeholder="Equipment Name">

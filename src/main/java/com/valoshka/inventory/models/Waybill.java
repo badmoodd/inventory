@@ -35,7 +35,7 @@ public class Waybill {
     @JoinColumn(name = "storage_id")
     private Storage storage;
 
-    @OneToMany(mappedBy = "waybill")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "waybill")
     List<EquipmentCard> equipmentCardList;
 
     public Waybill(@NonNull WaybillType name,

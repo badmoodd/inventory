@@ -22,7 +22,7 @@ public class Equipment {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "equipment")
     private List<EquipmentCard> equipmentCardList;
 
     @Override

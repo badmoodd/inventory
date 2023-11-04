@@ -1,16 +1,14 @@
 package com.valoshka.inventory.controllers;
 
 import com.valoshka.inventory.models.Storage;
-import com.valoshka.inventory.services.EquipmentCardService;
-import com.valoshka.inventory.services.EquipmentService;
 import com.valoshka.inventory.services.StorageService;
-import com.valoshka.inventory.services.WaybillService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -20,16 +18,17 @@ public class StorageController {
     private final StorageService storageService;
 
     @GetMapping
-    public String index(Model model){
+    public String index(Model model) {
         model.addAttribute("storages", storageService.getAll());
         return "storages/index";
     }
 
     @GetMapping("/new")
-    public String newStorage(Model model){
+    public String newStorage(Model model) {
         model.addAttribute("storage", new Storage());
         return "storages/new";
     }
+
     @PostMapping
     public String create(@ModelAttribute Storage storage) {
         storageService.save(storage);
@@ -39,7 +38,7 @@ public class StorageController {
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         try {
-            var storage = storageService.getById(id).orElseThrow();
+            Storage storage = storageService.getById(id).orElseThrow();
             model.addAttribute("storage", storage);
             return "storages/edit";
         } catch (NoSuchElementException e) {
@@ -56,10 +55,9 @@ public class StorageController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         storageService.delete(id);
+
         return "redirect:/storages";
     }
-
-
 
 
 }

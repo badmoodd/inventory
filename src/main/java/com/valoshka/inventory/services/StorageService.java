@@ -1,8 +1,6 @@
 package com.valoshka.inventory.services;
 
-import com.valoshka.inventory.models.EquipmentCard;
 import com.valoshka.inventory.models.Storage;
-import com.valoshka.inventory.models.Waybill;
 import com.valoshka.inventory.repositories.StorageRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -20,7 +17,6 @@ import java.util.Optional;
 public class StorageService {
 
     private final StorageRepository storageRepository;
-    private final WaybillService waybillService;
 
     public List<Storage> getAll() {
         return storageRepository.findAll();
@@ -47,22 +43,13 @@ public class StorageService {
 
     @Transactional
     public void delete(int id) {
-        try {
-            Storage storageToDelete = storageRepository.findById(id).orElseThrow();
-            List<Waybill> linkedWaybills = storageToDelete.getWaybillList();
+        Optional<Storage> storageOpt = storageRepository.findById(id);
 
-            if (!linkedWaybills.isEmpty()) {
-                for (Waybill waybillToDelete : linkedWaybills) {
-                    waybillService.delete(waybillToDelete.getId());
-                }
-            }
+        if (storageOpt.isPresent()) {
             storageRepository.deleteById(id);
-
-        } catch (NoSuchElementException ex) {
+        } else {
             log.info("Attempt to delete no exist storage");
         }
-
-        storageRepository.deleteById(id);
     }
 
 }
