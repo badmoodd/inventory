@@ -1,11 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,7 +16,10 @@
 
 <div class="container">
     <div class="page-name">
-        <h2 style="color: rgb(80, 78, 105);" class=" text-center"> Storages</h2>
+        <span th:text="${#dates.format(#dates.createNow(), 'dd-MM-yyyy')}" class="text-sm-start"></span>
+        <h2 style="color: rgb(80, 78, 105);" class="text-center">
+            Storages
+        </h2>
     </div>
 
     <div class="table-responsive">
@@ -46,11 +47,13 @@
                 <td>
                     <div class="button-container">
                         <a th:href="@{'/storages/' + ${aStorage.getId()} + '/edit'}" class="btn btn-primary btn-sm">Change</a>
+                        <a class="btn btn-primary btn-sm" id="view-button" data-bs-toggle="modal"
+                           data-bs-target="#exampleModal" th:attr="item-id=${aStorage.getId()}"
+                           onclick="myFunction(this)">View equipment</a>
                         <form action="#" th:method="DELETE" th:action="@{/storages/{id}(id=${aStorage.getId()})}">
                             <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
                         </form>
                     </div>
-
                 </td>
             </tr>
             </tbody>
@@ -58,17 +61,38 @@
     </div>
 </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Equipment type</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Your modal body content goes here -->
+                <form method="GET" id="viewEquipForm" class="d-flex flex-column gap-3">
+                    <div class="form-group">
+                        <label for="equipmentName"></label>
+                        <input type="text" id="equipmentName" name="name" class="form-control" placeholder="Enter Name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">View</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    function myFunction(button) {
+        document.getElementById("viewEquipForm").action =
+            "storages/" + button.getAttribute("item-id").toString() + "/equipment";
+    }
+</script>
 </body>
 </html>

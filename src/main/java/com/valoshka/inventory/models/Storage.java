@@ -8,7 +8,7 @@ import lombok.NonNull;
 import java.util.List;
 
 @Entity
-@Table(name = "storage")
+@Table(name = "storages")
 @Data
 @NoArgsConstructor
 public class Storage {

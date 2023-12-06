@@ -19,6 +19,7 @@ public class StorageController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("storages", storageService.getAll());
+        model.addAttribute("equipmentName", "");
         return "storages/index";
     }
 
@@ -56,6 +57,11 @@ public class StorageController {
         storageService.delete(id);
         return "redirect:/storages";
     }
+
+    /*@GetMapping("/{id}/equipment")
+    public String showEquipment(@PathVariable("id") int id, @RequestParam(value = "name") String equipmentName) {
+
+    }*/
 
 
 }

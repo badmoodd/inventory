@@ -19,7 +19,7 @@ public class StorageService {
     private final StorageRepository storageRepository;
 
     public List<Storage> getAll() {
-        return storageRepository.findAll();
+        return storageRepository.findAllByOrderByNameAsc();
     }
 
     public Optional<Storage> getById(int id) {

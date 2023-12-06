@@ -9,7 +9,7 @@ import lombok.NonNull;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "equipment_card")
+@Table(name = "equipment_cards")
 @NoArgsConstructor
 @Data
 public class EquipmentCard {
