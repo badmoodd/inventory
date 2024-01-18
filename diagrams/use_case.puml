@@ -1,0 +1,59 @@
+@startuml
+left to right direction
+actor User as user
+
+rectangle "User module"{
+    usecase "View storages" as viewStorages
+    usecase "Add storage" as addStorage
+    usecase "Delete storage" as deleteStorage
+    usecase "Update storage" as updateStorage
+    usecase "Specify storage details" as storageDetails
+
+    usecase "View equipment" as viewEquipment
+    usecase "Add equipment" as addEquipment
+    usecase "Delete equipment" as deleteEquipment
+    usecase "Update equipment" as updateEquipment
+    usecase "Specify equipment details" as equipmentDetails
+
+    usecase "View equipment records" as viewEquipmentRecords
+    usecase "Add equipment record" as addEquipmentRecords
+    usecase "Delete equipment record" as deleteEquipmentRecords
+    usecase "Update equipment record" as updateEquipmentRecords
+    usecase "Specify equipment record details" as equipmentDetailsRecords
+    
+    usecase "View specific equipment and it's count at date" as cringe1
+    usecase "Specify equipment" as g1
+    usecase "Specify date" as g2
+    usecase "View delivery/expense waybills at storages" as cringe2
+    usecase "View sorted storages by name at date" as cringe3
+}
+
+
+
+user -- viewStorages
+user -- addStorage
+addStorage .-> storageDetails : <<include>>
+user -- deleteStorage
+user -- updateStorage 
+updateStorage .-> storageDetails : <<include>>
+
+user -- viewEquipment
+user -- addEquipment
+addEquipment .-> equipmentDetails : <<include>>
+user -- deleteEquipment
+user -- updateEquipment
+updateEquipment .-> equipmentDetails : <<include>>
+
+user -- viewEquipmentRecords
+user -- addEquipmentRecords
+addEquipmentRecords .-> equipmentDetailsRecords : <<include>>
+user -- deleteEquipmentRecords
+user -- updateEquipmentRecords
+updateEquipmentRecords .-> equipmentDetailsRecords : <<include>>
+
+user --cringe1
+cringe1 .-> g1 : <<include>>
+cringe1 .-> g2 : <<include>>
+user --cringe2
+user --cringe3
+@enduml
