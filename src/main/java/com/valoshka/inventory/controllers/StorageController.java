@@ -1,12 +1,15 @@
 package com.valoshka.inventory.controllers;
 
 import com.valoshka.inventory.models.Storage;
+import com.valoshka.inventory.services.EquipmentService;
 import com.valoshka.inventory.services.StorageService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -58,10 +61,28 @@ public class StorageController {
         return "redirect:/storages";
     }
 
-    /*@GetMapping("/{id}/equipment")
-    public String showEquipment(@PathVariable("id") int id, @RequestParam(value = "name") String equipmentName) {
+    @GetMapping("/sort")
+    public String showSortedStoragesByDate(@RequestParam(value = "date") String dateStr, Model model) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(dateStr, formatter);
 
-    }*/
+        model.addAttribute("storages", storageService.getAllSortedByNameLessWaybillDate(date));
+        return "storages/sortedByDate";
+    }
+
+    @GetMapping("/{id}/equipment")
+    public String showOverallCountOfSpecificEquipmentByDate(@PathVariable("id") int id,
+                                                            @RequestParam(value = "name") String equipmentName,
+                                                            @RequestParam(value = "date") String dateStr,
+                                                            Model model) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(dateStr, formatter);
+
+        model.addAttribute("storageEquipmentCount", storageService.findEquipmentAndItsCountOnDate(id, equipmentName, date));
+        model.addAttribute("dateToFilter", date);
+        return "storages/storageEquipmentInfo";
+    }
 
 
 }

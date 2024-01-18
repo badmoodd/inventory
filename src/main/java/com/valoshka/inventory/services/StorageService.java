@@ -7,7 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -19,7 +23,11 @@ public class StorageService {
     private final StorageRepository storageRepository;
 
     public List<Storage> getAll() {
-        return storageRepository.findAllByOrderByNameAsc();
+        return storageRepository.findAll();
+    }
+
+    public List<Storage> getAllSortedByNameLessWaybillDate(LocalDate date) {
+        return storageRepository.findAllByOrderByNameAscLessDate(date);
     }
 
     public Optional<Storage> getById(int id) {
@@ -50,6 +58,10 @@ public class StorageService {
         } else {
             log.info("Attempt to delete no exist storage");
         }
+    }
+
+    public Map<String, Object> findEquipmentAndItsCountOnDate(int storageId, String equipmentName, LocalDate date) {
+        return storageRepository.findEquipmentAndItsCountOnDate(storageId, equipmentName, date);
     }
 
 }

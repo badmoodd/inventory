@@ -4,10 +4,13 @@ import com.valoshka.inventory.models.Waybill;
 import com.valoshka.inventory.repositories.WaybillRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -46,6 +49,10 @@ public class WaybillService {
         } else {
             log.info("Attempt to delete no exist waybill");
         }
+    }
+
+    public List<Map<String, Object>> findWaybillByEquipmentAndByDate(String equipmentName, LocalDate date) {
+        return waybillRepository.findWaybillByEquipmentAndByDate(equipmentName, date);
     }
 
 
